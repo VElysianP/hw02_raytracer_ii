@@ -20,6 +20,7 @@ public:
 
     virtual ~Geometry(){}
     virtual void SetMaterial(Material* m){material = m;}
+    virtual glm::vec2 GetUVCoordinates(const glm::vec3 &point) const = 0;
     QString name;//Mainly used for debugging purposes
     Transform transform;
     Material* material;

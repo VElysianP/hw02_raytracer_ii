@@ -25,7 +25,8 @@ SOURCES += \
     $$PWD/cameracontrolshelp.cpp \
     $$PWD/scene/materials/phongmaterial.cpp \
     $$PWD/scene/materials/lambertmaterial.cpp \
-    $$PWD/scene/jsonreader.cpp
+    $$PWD/scene/jsonreader.cpp \
+    $$PWD/rendertask.cpp
 
 HEADERS += \
     $$PWD/mainwindow.h \
@@ -53,4 +54,5 @@ HEADERS += \
     $$PWD/scene/materials/lambertmaterial.h \
     $$PWD/scene/materials/phongmaterial.h \
     $$PWD/scene/jsonreader.h \
-    $$PWD/scene/intersectable.h
+    $$PWD/scene/intersectable.h \
+    $$PWD/../../rendertask.h

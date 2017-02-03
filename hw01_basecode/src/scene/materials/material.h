@@ -2,8 +2,10 @@
 #include <la.h>
 
 #include <raytracing/intersection.h>
+#include <raytracing/integrator.h>
 
 class Intersection;
+class Integrator;
 
 class Material
 {
@@ -16,7 +18,7 @@ public:
     // ray direction.
     // The outgoing ray is the direction along which the light we are computing is being reflected.
     // The incoming ray is the direction from which light is being received by the point of intersection.
-    virtual glm::vec3 EvaluateReflectedEnergy(const Intersection &isx, const glm::vec3 &outgoing_ray, const glm::vec3 &incoming_ray) = 0;
+    virtual glm::vec3 EvaluateReflectedEnergy(const Intersection &isx,  glm::vec3 &outgoing_ray, const glm::vec3 &incoming_ray,Ray cameraRay,unsigned int depth, Integrator currentIntegrator) = 0;
 
     //Returns the RGB color stored in the input image as a vec3 with values ranging from 0 to 1.
     //Note that this is a STATIC function, so you don't need to call it from an instance of Material

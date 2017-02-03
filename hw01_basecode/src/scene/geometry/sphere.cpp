@@ -4,6 +4,8 @@
 
 #include <la.h>
 
+//#define PI 3.1415926535897
+
 static const int SPH_IDX_COUNT = 2280;  // 760 tris * 3
 static const int SPH_VERT_COUNT = 382;
 
@@ -208,4 +210,21 @@ void Sphere::create()
     bufNor.bind();
     bufNor.setUsagePattern(QOpenGLBuffer::StaticDraw);
     bufNor.allocate(sph_vert_nor, SPH_VERT_COUNT * sizeof(glm::vec3));
+}
+glm::vec2 Sphere::GetUVCoordinates(const glm::vec3 &point) const
+{
+    float localRadius = std::sqrt(point[0]*point[0]+point[2]*point[2]);
+    float loopLength = localRadius*2*PI;
+    if((localRadius==0)&&(point[1]==0.5))
+    {
+        return glm::vec2(point[0]+0.5,1);
+    }
+
+    if((localRadius==0)&&(point[1]==-0.5))
+    {
+        return glm::vec2(point[0]+0.5,0);
+    }
+
+    return glm::vec2((point[0]+0.5)/loopLength,point[1]+0.5);
+//    return glm::vec2(1.0);
 }

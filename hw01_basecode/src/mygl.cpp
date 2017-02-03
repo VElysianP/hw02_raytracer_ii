@@ -6,6 +6,7 @@
 #include <QKeyEvent>
 #include <QXmlStreamReader>
 #include <QFileDialog>
+#include <F:\Course\CIS561 Advanced Computer Graphics\HW2\hw02_raytracer_ii\rendertask.h>
 
 
 MyGL::MyGL(QWidget *parent)
@@ -199,23 +200,26 @@ void MyGL::SceneLoadDialog()
 
 void MyGL::RaytraceScene()
 {
-//    QString filepath = QString("F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/TEST.png");
-    QString filepath = QFileDialog::getSaveFileName(0, QString("Save Image"), QString("../rendered_images"), tr("*.png"));
+    QString filepath = QString("F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/test.png");
+//    QString filepath = QFileDialog::getSaveFileName(0, QString("Save Image"), QString("../rendered_images"), tr("*.png"));
     if(filepath.length() == 0)
     {
         return;
     }
+
+
+
     for(unsigned int i = 0; i < scene.camera.width; i++)
     {
         for(unsigned int j = 0; j < scene.camera.height; j++)
         {
             Ray currentRay = gl_camera.Raycast(i,j);
 
-            Intersection currentIntersection = intersection_engine.GetIntersection(currentRay);
-            glm::vec3 colorNormal = currentIntersection.normal;
+//            Intersection currentIntersection = intersection_engine.GetIntersection(currentRay);
+//            glm::vec3 colorNormal = currentIntersection.normal;
 
-//            unsigned int depth =  5;
-//            glm::vec3 colorNormal = integrator.TraceRay(currentRay,depth);
+            unsigned int depth =  0;
+            glm::vec3 colorNormal = integrator.TraceRay(currentRay,depth);
 
 
             scene.film.pixels[i][j] = glm::vec3(std::fabs(colorNormal[0]),std::fabs(colorNormal[1]),std::fabs(colorNormal[2]));
@@ -223,3 +227,4 @@ void MyGL::RaytraceScene()
     }
     scene.film.WriteImage(filepath);
 }
+

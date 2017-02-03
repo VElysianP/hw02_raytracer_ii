@@ -351,3 +351,19 @@ void Cube::create()
     bufCol.allocate(cub_vert_col, CUB_VERT_COUNT * sizeof(glm::vec3));
 
 }
+glm::vec2 Cube::GetUVCoordinates(const glm::vec3 &point) const
+{
+    if(fabs(point[0])==0.5)
+    {
+        return glm::vec2(point[1]+0.5,point[2]+0.5);
+    }
+    if(fabs(point[1])==0.5)
+    {
+        return glm::vec2(point[0]+0.5,point[2]+0.5);
+    }
+    if(fabs(point[2])==0.5)
+    {
+        return glm::vec2(point[0]+0.5,point[1]+0.5);
+    }
+//    return glm::vec2(1.0);
+}

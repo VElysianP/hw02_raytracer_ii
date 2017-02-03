@@ -31,6 +31,27 @@ Triangle::Triangle(const glm::vec3 &p1, const glm::vec3 &p2, const glm::vec3 &p3
     uvs[1] = t2;
     uvs[2] = t3;
 }
+glm::vec2 Triangle::GetUVCoordinates(const glm::vec3 &point) const
+{
+    glm::vec3 edge1 = points[1]-points[0];
+    glm::vec3 edge2 = points[2]-points[0];
+
+    glm::vec3 edge_1 = point - points[0];
+    glm::vec3 edge_2 = point - points[1];
+    glm::vec3 edge_3 = point - points[2];
+
+    float totalArea = 0.5*glm::cross(edge1,edge2).length();
+    float area1 = 0.5*glm::cross(edge_2,edge_3).length();
+    float area2 = 0.5*glm::cross(edge_1,edge_3).length();
+    float area3 = 0.5*glm::cross(edge_1,edge_2).length();
+
+    float ratio1 = area1/totalArea;
+    float ratio2 = area2/totalArea;
+    float ratio3 = area3/totalArea;
+
+    return uvs[0]*ratio1+uvs[1]*ratio2+uvs[2]*ratio3;
+
+}
 
 //Returns the interpolation of the triangle's three normals based on the point inside the triangle that is given.
 glm::vec3 Triangle::GetNormal(const glm::vec3 &position)
@@ -222,3 +243,32 @@ void Mesh::create(){
 
 //This does nothing because individual triangles are not rendered with OpenGL; they are rendered all together in their Mesh.
 void Triangle::create(){}
+
+
+glm::vec2 Mesh::GetUVCoordinates(const glm::vec3 &point) const
+{
+    glm::vec3 edge1 = glm::vec3(0.0);
+    glm::vec3 edge2 = glm::vec3(0.0);
+
+    for(int tempCount =0 ;tempCount<faces.size();tempCount++)
+    {
+        edge1 = faces[tempCount]->points[1]-faces[tempCount]->points[0];
+        edge2 = faces[tempCount]->points[2]-faces[tempCount]->points[0];
+
+        glm::vec3 edge_1 = point - faces[tempCount]->points[0];
+        glm::vec3 edge_2 = point - faces[tempCount]->points[1];
+        glm::vec3 edge_3 = point - faces[tempCount]->points[2];
+
+        float totalArea = 0.5*glm::cross(edge1,edge2).length();
+        float area1 = 0.5*glm::cross(edge_2,edge_3).length();
+        float area2 = 0.5*glm::cross(edge_1,edge_3).length();
+        float area3 = 0.5*glm::cross(edge_1,edge_2).length();
+
+        if(!(totalArea<(area1+area2+area3)))
+        {
+            Triangle intersectTriangle = Triangle(faces[tempCount]->points[0],faces[tempCount]->points[1],faces[tempCount]->points[2]);
+           return intersectTriangle.GetUVCoordinates(point);
+        }
+    }
+//    return glm::vec2(1.0);
+}

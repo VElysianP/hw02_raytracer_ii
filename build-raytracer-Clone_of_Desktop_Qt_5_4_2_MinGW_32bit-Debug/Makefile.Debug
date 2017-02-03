@@ -65,7 +65,8 @@ SOURCES       = ..\hw01_basecode\src\main.cpp \
 		..\hw01_basecode\src\cameracontrolshelp.cpp \
 		..\hw01_basecode\src\scene\materials\phongmaterial.cpp \
 		..\hw01_basecode\src\scene\materials\lambertmaterial.cpp \
-		..\hw01_basecode\src\scene\jsonreader.cpp debug\qrc_glsl.cpp \
+		..\hw01_basecode\src\scene\jsonreader.cpp \
+		..\hw01_basecode\src\rendertask.cpp debug\qrc_glsl.cpp \
 		debug\moc_mainwindow.cpp \
 		debug\moc_mygl.cpp \
 		debug\moc_glwidget277.cpp \
@@ -93,6 +94,7 @@ OBJECTS       = debug/main.o \
 		debug/phongmaterial.o \
 		debug/lambertmaterial.o \
 		debug/jsonreader.o \
+		debug/rendertask.o \
 		debug/qrc_glsl.o \
 		debug/moc_mainwindow.o \
 		debug/moc_mygl.o \
@@ -124,7 +126,8 @@ DIST          =  ..\hw01_basecode\src\mainwindow.h \
 		..\hw01_basecode\src\scene\materials\lambertmaterial.h \
 		..\hw01_basecode\src\scene\materials\phongmaterial.h \
 		..\hw01_basecode\src\scene\jsonreader.h \
-		..\hw01_basecode\src\scene\intersectable.h ..\hw01_basecode\src\main.cpp \
+		..\hw01_basecode\src\scene\intersectable.h \
+		..\rendertask.h ..\hw01_basecode\src\main.cpp \
 		..\hw01_basecode\src\mainwindow.cpp \
 		..\hw01_basecode\src\mygl.cpp \
 		..\hw01_basecode\src\scene\camera.cpp \
@@ -146,7 +149,8 @@ DIST          =  ..\hw01_basecode\src\mainwindow.h \
 		..\hw01_basecode\src\cameracontrolshelp.cpp \
 		..\hw01_basecode\src\scene\materials\phongmaterial.cpp \
 		..\hw01_basecode\src\scene\materials\lambertmaterial.cpp \
-		..\hw01_basecode\src\scene\jsonreader.cpp
+		..\hw01_basecode\src\scene\jsonreader.cpp \
+		..\hw01_basecode\src\rendertask.cpp
 QMAKE_TARGET  = 277
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = 277.exe
@@ -185,7 +189,7 @@ dist:
 	$(ZIP) 277.zip $(SOURCES) $(DIST) ..\hw01_basecode\raytracer.pro D:\Qt\5.4\mingw491_32\mkspecs\features\spec_pre.prf D:\Qt\5.4\mingw491_32\mkspecs\qdevice.pri D:\Qt\5.4\mingw491_32\mkspecs\features\device_config.prf D:\Qt\5.4\mingw491_32\mkspecs\common\shell-win32.conf D:\Qt\5.4\mingw491_32\mkspecs\qconfig.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_axbase.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_axbase_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_axcontainer.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_axserver.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_axserver_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_bluetooth.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_clucene_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_concurrent.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_core.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_core_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_dbus.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_dbus_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_declarative.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_declarative_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_designer.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_designer_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_enginio.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_enginio_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_gui.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_gui_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_help.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_help_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_location.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_location_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_multimedia.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_network.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_network_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_nfc.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_nfc_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_opengl.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_opengl_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_openglextensions.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_platformsupport_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_positioning.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_positioning_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_printsupport.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_qml.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_qml_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_qmltest.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_quick.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_quick_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_script.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_script_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_scripttools.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_scripttools_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_sensors.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_sensors_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_serialport.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_serialport_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_sql.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_sql_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_svg.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_svg_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_testlib.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_testlib_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_uitools.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_uitools_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_webchannel.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_webkit.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_webkit_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_webkitwidgets.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_webkitwidgets_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_websockets.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_websockets_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_widgets.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_widgets_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_winextras.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_winextras_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_xml.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_xml_private.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\Qt\5.4\mingw491_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\Qt\5.4\mingw491_32\mkspecs\features\qt_functions.prf D:\Qt\5.4\mingw491_32\mkspecs\features\qt_config.prf D:\Qt\5.4\mingw491_32\mkspecs\features\win32\qt_config.prf D:\Qt\5.4\mingw491_32\mkspecs\win32-g++\qmake.conf D:\Qt\5.4\mingw491_32\mkspecs\features\spec_post.prf D:\Qt\5.4\mingw491_32\mkspecs\features\exclusive_builds.prf D:\Qt\5.4\mingw491_32\mkspecs\features\default_pre.prf D:\Qt\5.4\mingw491_32\mkspecs\features\win32\default_pre.prf ..\hw01_basecode\src\src.pri D:\Qt\5.4\mingw491_32\mkspecs\features\resolve_config.prf D:\Qt\5.4\mingw491_32\mkspecs\features\exclusive_builds_post.prf D:\Qt\5.4\mingw491_32\mkspecs\features\default_post.prf D:\Qt\5.4\mingw491_32\mkspecs\features\build_pass.prf D:\Qt\5.4\mingw491_32\mkspecs\features\win32\console.prf D:\Qt\5.4\mingw491_32\mkspecs\features\c++11.prf D:\Qt\5.4\mingw491_32\mkspecs\features\qml_debug.prf D:\Qt\5.4\mingw491_32\mkspecs\features\win32\rtti.prf D:\Qt\5.4\mingw491_32\mkspecs\features\precompile_header.prf D:\Qt\5.4\mingw491_32\mkspecs\features\qt.prf D:\Qt\5.4\mingw491_32\mkspecs\features\resources.prf D:\Qt\5.4\mingw491_32\mkspecs\features\moc.prf D:\Qt\5.4\mingw491_32\mkspecs\features\win32\opengl.prf D:\Qt\5.4\mingw491_32\mkspecs\features\uic.prf D:\Qt\5.4\mingw491_32\mkspecs\features\testcase_targets.prf D:\Qt\5.4\mingw491_32\mkspecs\features\exceptions.prf D:\Qt\5.4\mingw491_32\mkspecs\features\yacc.prf D:\Qt\5.4\mingw491_32\mkspecs\features\lex.prf ..\hw01_basecode\raytracer.pro ..\hw01_basecode\glsl.qrc D:/Qt/5.4/mingw491_32/lib/Qt5Widgetsd.prl D:/Qt/5.4/mingw491_32/lib/Qt5Guid.prl D:/Qt/5.4/mingw491_32/lib/Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\mygl.o debug\camera.o debug\scene.o debug\cube.o debug\mesh.o debug\sphere.o debug\drawable.o debug\glwidget277.o debug\shaderprogram.o debug\intersection.o debug\ray.o debug\transform.o debug\square.o debug\tiny_obj_loader.o debug\material.o debug\film.o debug\integrator.o debug\cameracontrolshelp.o debug\phongmaterial.o debug\lambertmaterial.o debug\jsonreader.o debug\qrc_glsl.o debug\moc_mainwindow.o debug\moc_mygl.o debug\moc_glwidget277.o debug\moc_cameracontrolshelp.o
+	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\mygl.o debug\camera.o debug\scene.o debug\cube.o debug\mesh.o debug\sphere.o debug\drawable.o debug\glwidget277.o debug\shaderprogram.o debug\intersection.o debug\ray.o debug\transform.o debug\square.o debug\tiny_obj_loader.o debug\material.o debug\film.o debug\integrator.o debug\cameracontrolshelp.o debug\phongmaterial.o debug\lambertmaterial.o debug\jsonreader.o debug\rendertask.o debug\qrc_glsl.o debug\moc_mainwindow.o debug\moc_mygl.o debug\moc_glwidget277.o debug\moc_cameracontrolshelp.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -320,7 +324,7 @@ debug/moc_mainwindow.cpp: D:/Qt/5.4/mingw491_32/include/QtWidgets/QMainWindow \
 		../hw01_basecode/src/cameracontrolshelp.h \
 		D:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
 		../hw01_basecode/src/mainwindow.h
-	D:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode" -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/include" -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/src" -IC:/Program -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/Files/boost/boost_1_58_0" -ID:/Qt/5.4/mingw491_32/include -ID:/Qt/5.4/mingw491_32/include/QtWidgets -ID:/Qt/5.4/mingw491_32/include/QtGui -ID:/Qt/5.4/mingw491_32/include/QtCore -I. ..\hw01_basecode\src\mainwindow.h -o debug\moc_mainwindow.cpp
+	D:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode" -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/include" -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/src" -IC:/Program -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/Files/boost/boost_1_58_0" -ID:/Qt/5.4/mingw491_32/include -ID:/Qt/5.4/mingw491_32/include/QtWidgets -ID:/Qt/5.4/mingw491_32/include/QtGui -ID:/Qt/5.4/mingw491_32/include/QtCore -I. ..\hw01_basecode\src\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug/moc_mygl.cpp: D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLVertexArrayObject \
 		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglvertexarrayobject.h \
@@ -557,6 +561,7 @@ debug/moc_mygl.cpp: D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLVertexArrayObject
 		../hw01_basecode/src/scene/geometry/geometry.h \
 		../hw01_basecode/src/raytracing/intersection.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h \
 		../hw01_basecode/src/scene/jsonreader.h \
@@ -568,9 +573,8 @@ debug/moc_mygl.cpp: D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLVertexArrayObject
 		D:/Qt/5.4/mingw491_32/include/QtCore/QJsonDocument \
 		D:/Qt/5.4/mingw491_32/include/QtCore/qjsondocument.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/QFile \
-		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/mygl.h
-	D:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode" -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/include" -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/src" -IC:/Program -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/Files/boost/boost_1_58_0" -ID:/Qt/5.4/mingw491_32/include -ID:/Qt/5.4/mingw491_32/include/QtWidgets -ID:/Qt/5.4/mingw491_32/include/QtGui -ID:/Qt/5.4/mingw491_32/include/QtCore -I. ..\hw01_basecode\src\mygl.h -o debug\moc_mygl.cpp
+	D:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode" -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/include" -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/src" -IC:/Program -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/Files/boost/boost_1_58_0" -ID:/Qt/5.4/mingw491_32/include -ID:/Qt/5.4/mingw491_32/include/QtWidgets -ID:/Qt/5.4/mingw491_32/include/QtGui -ID:/Qt/5.4/mingw491_32/include/QtCore -I. ..\hw01_basecode\src\mygl.h -o debug\moc_mygl.cpp
 
 debug/moc_glwidget277.cpp: D:/Qt/5.4/mingw491_32/include/QtWidgets/QOpenGLWidget \
 		D:/Qt/5.4/mingw491_32/include/QtWidgets/qopenglwidget.h \
@@ -693,7 +697,7 @@ debug/moc_glwidget277.cpp: D:/Qt/5.4/mingw491_32/include/QtWidgets/QOpenGLWidget
 		D:/Qt/5.4/mingw491_32/include/QtCore/qtimer.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		../hw01_basecode/src/openGL/glwidget277.h
-	D:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode" -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/include" -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/src" -IC:/Program -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/Files/boost/boost_1_58_0" -ID:/Qt/5.4/mingw491_32/include -ID:/Qt/5.4/mingw491_32/include/QtWidgets -ID:/Qt/5.4/mingw491_32/include/QtGui -ID:/Qt/5.4/mingw491_32/include/QtCore -I. ..\hw01_basecode\src\openGL\glwidget277.h -o debug\moc_glwidget277.cpp
+	D:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode" -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/include" -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/src" -IC:/Program -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/Files/boost/boost_1_58_0" -ID:/Qt/5.4/mingw491_32/include -ID:/Qt/5.4/mingw491_32/include/QtWidgets -ID:/Qt/5.4/mingw491_32/include/QtGui -ID:/Qt/5.4/mingw491_32/include/QtCore -I. ..\hw01_basecode\src\openGL\glwidget277.h -o debug\moc_glwidget277.cpp
 
 debug/moc_cameracontrolshelp.cpp: D:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
 		D:/Qt/5.4/mingw491_32/include/QtWidgets/qwidget.h \
@@ -798,7 +802,7 @@ debug/moc_cameracontrolshelp.cpp: D:/Qt/5.4/mingw491_32/include/QtWidgets/QWidge
 		D:/Qt/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		D:/Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
 		../hw01_basecode/src/cameracontrolshelp.h
-	D:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode" -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/include" -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/src" -IC:/Program -I"F:/Course/CIS561 Advanced Computer Graphics/HW1/raytracer-part-i-VElysianP/hw01_basecode/Files/boost/boost_1_58_0" -ID:/Qt/5.4/mingw491_32/include -ID:/Qt/5.4/mingw491_32/include/QtWidgets -ID:/Qt/5.4/mingw491_32/include/QtGui -ID:/Qt/5.4/mingw491_32/include/QtCore -I. ..\hw01_basecode\src\cameracontrolshelp.h -o debug\moc_cameracontrolshelp.cpp
+	D:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode" -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/include" -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/src" -IC:/Program -I"F:/Course/CIS561 Advanced Computer Graphics/HW2/hw02_raytracer_ii/hw01_basecode/Files/boost/boost_1_58_0" -ID:/Qt/5.4/mingw491_32/include -ID:/Qt/5.4/mingw491_32/include/QtWidgets -ID:/Qt/5.4/mingw491_32/include/QtGui -ID:/Qt/5.4/mingw491_32/include/QtCore -I. ..\hw01_basecode\src\cameracontrolshelp.h -o debug\moc_cameracontrolshelp.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1042,6 +1046,7 @@ ui_mainwindow.h: ../hw01_basecode/forms/mainwindow.ui \
 		../hw01_basecode/src/scene/geometry/geometry.h \
 		../hw01_basecode/src/raytracing/intersection.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h \
 		../hw01_basecode/src/scene/jsonreader.h \
@@ -1052,8 +1057,7 @@ ui_mainwindow.h: ../hw01_basecode/forms/mainwindow.ui \
 		D:/Qt/5.4/mingw491_32/include/QtCore/qjsonarray.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/QJsonDocument \
 		D:/Qt/5.4/mingw491_32/include/QtCore/qjsondocument.h \
-		D:/Qt/5.4/mingw491_32/include/QtCore/QFile \
-		../hw01_basecode/src/raytracing/integrator.h
+		D:/Qt/5.4/mingw491_32/include/QtCore/QFile
 	D:\Qt\5.4\mingw491_32\bin\uic.exe ..\hw01_basecode\forms\mainwindow.ui -o ui_mainwindow.h
 
 ui_cameracontrolshelp.h: ../hw01_basecode/forms/cameracontrolshelp.ui
@@ -1299,7 +1303,192 @@ debug/mainwindow.o: ../hw01_basecode/src/mainwindow.cpp ../hw01_basecode/src/mai
 		D:/Qt/5.4/mingw491_32/include/QtGui/qicon.h \
 		../hw01_basecode/src/cameracontrolshelp.h \
 		D:/Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QVariant \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QAction \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qaction.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qactiongroup.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QApplication \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qapplication.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qeventloop.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qguiapplication.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qinputmethod.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QButtonGroup \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qbuttongroup.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QHBoxLayout \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qboxlayout.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qlayout.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qlayoutitem.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qgridlayout.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QHeaderView \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qheaderview.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qvalidator.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qregularexpression.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qslider.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qstyle.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QMenu \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qmenu.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QMenuBar \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qmenubar.h \
+		../hw01_basecode/src/mygl.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLVertexArrayObject \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglvertexarrayobject.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QObject \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopengl.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qt_windows.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopengles2ext.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglext.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLShaderProgram \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglshaderprogram.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qvector3d.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qvector4d.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qmatrix4x4.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qquaternion.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qgenericmatrix.h \
+		../hw01_basecode/src/openGL/glwidget277.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QOpenGLWidget \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qopenglwidget.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/QSurfaceFormat \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qsurfaceformat.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLFunctions_3_2_Core \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglfunctions_3_2_core.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLVersionFunctions \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglversionfunctions.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglcontext.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QScopedPointer \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QTimer \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qtimer.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qbasictimer.h \
+		../hw01_basecode/src/la.h \
+		../hw01_basecode/include/glm/glm.hpp \
+		../hw01_basecode/include/glm/detail/_fixes.hpp \
+		../hw01_basecode/include/glm/fwd.hpp \
+		../hw01_basecode/include/glm/detail/type_int.hpp \
+		../hw01_basecode/include/glm/detail/setup.hpp \
+		../hw01_basecode/include/glm/detail/type_float.hpp \
+		../hw01_basecode/include/glm/detail/type_vec.hpp \
+		../hw01_basecode/include/glm/detail/precision.hpp \
+		../hw01_basecode/include/glm/detail/type_mat.hpp \
+		../hw01_basecode/include/glm/vec2.hpp \
+		../hw01_basecode/include/glm/detail/type_vec2.hpp \
+		../hw01_basecode/include/glm/detail/_swizzle.hpp \
+		../hw01_basecode/include/glm/detail/_swizzle_func.hpp \
+		../hw01_basecode/include/glm/detail/type_vec2.inl \
+		../hw01_basecode/include/glm/vec3.hpp \
+		../hw01_basecode/include/glm/detail/type_vec3.hpp \
+		../hw01_basecode/include/glm/detail/type_vec3.inl \
+		../hw01_basecode/include/glm/vec4.hpp \
+		../hw01_basecode/include/glm/detail/type_vec4.hpp \
+		../hw01_basecode/include/glm/detail/type_vec4.inl \
+		../hw01_basecode/include/glm/mat2x2.hpp \
+		../hw01_basecode/include/glm/detail/type_mat2x2.hpp \
+		../hw01_basecode/include/glm/detail/type_mat2x2.inl \
+		../hw01_basecode/include/glm/mat2x3.hpp \
+		../hw01_basecode/include/glm/detail/type_mat2x3.hpp \
+		../hw01_basecode/include/glm/detail/type_mat2x3.inl \
+		../hw01_basecode/include/glm/mat2x4.hpp \
+		../hw01_basecode/include/glm/detail/type_mat2x4.hpp \
+		../hw01_basecode/include/glm/detail/type_mat2x4.inl \
+		../hw01_basecode/include/glm/mat3x2.hpp \
+		../hw01_basecode/include/glm/detail/type_mat3x2.hpp \
+		../hw01_basecode/include/glm/detail/type_mat3x2.inl \
+		../hw01_basecode/include/glm/mat3x3.hpp \
+		../hw01_basecode/include/glm/detail/type_mat3x3.hpp \
+		../hw01_basecode/include/glm/detail/type_mat3x3.inl \
+		../hw01_basecode/include/glm/mat3x4.hpp \
+		../hw01_basecode/include/glm/detail/type_mat3x4.hpp \
+		../hw01_basecode/include/glm/detail/type_mat3x4.inl \
+		../hw01_basecode/include/glm/mat4x2.hpp \
+		../hw01_basecode/include/glm/detail/type_mat4x2.hpp \
+		../hw01_basecode/include/glm/detail/type_mat4x2.inl \
+		../hw01_basecode/include/glm/mat4x3.hpp \
+		../hw01_basecode/include/glm/detail/type_mat4x3.hpp \
+		../hw01_basecode/include/glm/detail/type_mat4x3.inl \
+		../hw01_basecode/include/glm/mat4x4.hpp \
+		../hw01_basecode/include/glm/detail/type_mat4x4.hpp \
+		../hw01_basecode/include/glm/detail/type_mat4x4.inl \
+		../hw01_basecode/include/glm/trigonometric.hpp \
+		../hw01_basecode/include/glm/detail/func_trigonometric.hpp \
+		../hw01_basecode/include/glm/detail/func_trigonometric.inl \
+		../hw01_basecode/include/glm/detail/_vectorize.hpp \
+		../hw01_basecode/include/glm/detail/type_vec1.hpp \
+		../hw01_basecode/include/glm/detail/type_vec1.inl \
+		../hw01_basecode/include/glm/exponential.hpp \
+		../hw01_basecode/include/glm/detail/func_exponential.hpp \
+		../hw01_basecode/include/glm/detail/func_exponential.inl \
+		../hw01_basecode/include/glm/detail/func_vector_relational.hpp \
+		../hw01_basecode/include/glm/detail/func_vector_relational.inl \
+		../hw01_basecode/include/glm/common.hpp \
+		../hw01_basecode/include/glm/detail/func_common.hpp \
+		../hw01_basecode/include/glm/detail/func_common.inl \
+		../hw01_basecode/include/glm/packing.hpp \
+		../hw01_basecode/include/glm/detail/func_packing.hpp \
+		../hw01_basecode/include/glm/detail/func_packing.inl \
+		../hw01_basecode/include/glm/detail/type_half.hpp \
+		../hw01_basecode/include/glm/detail/type_half.inl \
+		../hw01_basecode/include/glm/geometric.hpp \
+		../hw01_basecode/include/glm/detail/func_geometric.hpp \
+		../hw01_basecode/include/glm/detail/func_geometric.inl \
+		../hw01_basecode/include/glm/matrix.hpp \
+		../hw01_basecode/include/glm/detail/func_matrix.hpp \
+		../hw01_basecode/include/glm/detail/func_matrix.inl \
+		../hw01_basecode/include/glm/vector_relational.hpp \
+		../hw01_basecode/include/glm/integer.hpp \
+		../hw01_basecode/include/glm/detail/func_integer.hpp \
+		../hw01_basecode/include/glm/detail/func_integer.inl \
+		../hw01_basecode/include/glm/gtc/matrix_transform.hpp \
+		../hw01_basecode/include/glm/gtc/constants.hpp \
+		../hw01_basecode/include/glm/gtc/constants.inl \
+		../hw01_basecode/include/glm/gtc/matrix_transform.inl \
+		../hw01_basecode/include/glm/gtx/string_cast.hpp \
+		../hw01_basecode/include/glm/gtx/integer.hpp \
+		../hw01_basecode/include/glm/gtx/integer.inl \
+		../hw01_basecode/include/glm/gtx/quaternion.hpp \
+		../hw01_basecode/include/glm/gtc/quaternion.hpp \
+		../hw01_basecode/include/glm/gtx/quaternion.inl \
+		../hw01_basecode/include/glm/gtx/norm.hpp \
+		../hw01_basecode/include/glm/gtx/norm.inl \
+		../hw01_basecode/include/glm/gtx/string_cast.inl \
+		../hw01_basecode/include/glm/gtc/type_ptr.hpp \
+		../hw01_basecode/include/glm/gtc/type_ptr.inl \
+		D:/Qt/5.4/mingw491_32/include/QtGui/QMatrix4x4 \
+		../hw01_basecode/src/openGL/shaderprogram.h \
+		../hw01_basecode/src/openGL/drawable.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLBuffer \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglbuffer.h \
+		../hw01_basecode/src/scene/camera.h \
+		../hw01_basecode/src/raytracing/ray.h \
+		../hw01_basecode/src/scene/scene.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QList \
+		../hw01_basecode/src/raytracing/film.h \
+		../hw01_basecode/src/scene/geometry/geometry.h \
+		../hw01_basecode/src/raytracing/intersection.h \
+		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
+		../hw01_basecode/src/scene/transform.h \
+		../hw01_basecode/src/scene/intersectable.h \
+		../hw01_basecode/src/scene/jsonreader.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QJsonObject \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qjsonobject.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qjsonvalue.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QJsonArray \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qjsonarray.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QJsonDocument \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qjsondocument.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QFile
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\hw01_basecode\src\mainwindow.cpp
 
 debug/mygl.o: ../hw01_basecode/src/mygl.cpp ../hw01_basecode/src/mygl.h \
@@ -1538,6 +1727,7 @@ debug/mygl.o: ../hw01_basecode/src/mygl.cpp ../hw01_basecode/src/mygl.h \
 		../hw01_basecode/src/scene/geometry/geometry.h \
 		../hw01_basecode/src/raytracing/intersection.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h \
 		../hw01_basecode/src/scene/jsonreader.h \
@@ -1549,7 +1739,6 @@ debug/mygl.o: ../hw01_basecode/src/mygl.cpp ../hw01_basecode/src/mygl.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/QJsonDocument \
 		D:/Qt/5.4/mingw491_32/include/QtCore/qjsondocument.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/QFile \
-		../hw01_basecode/src/raytracing/integrator.h \
 		D:/Qt/5.4/mingw491_32/include/QtWidgets/QApplication \
 		D:/Qt/5.4/mingw491_32/include/QtWidgets/qapplication.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
@@ -1564,7 +1753,8 @@ debug/mygl.o: ../hw01_basecode/src/mygl.cpp ../hw01_basecode/src/mygl.h \
 		D:/Qt/5.4/mingw491_32/include/QtWidgets/qfiledialog.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/qdir.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/qfileinfo.h \
-		D:/Qt/5.4/mingw491_32/include/QtWidgets/qdialog.h
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qdialog.h \
+		F:/Course/CIS561\ Advanced\ Computer\ Graphics/HW2/hw02_raytracer_ii/rendertask.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mygl.o ..\hw01_basecode\src\mygl.cpp
 
 debug/camera.o: ../hw01_basecode/src/scene/camera.cpp ../hw01_basecode/src/scene/camera.h \
@@ -2027,6 +2217,7 @@ debug/scene.o: ../hw01_basecode/src/scene/scene.cpp ../hw01_basecode/src/scene/s
 		../hw01_basecode/src/scene/geometry/geometry.h \
 		../hw01_basecode/src/raytracing/intersection.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h \
 		../hw01_basecode/src/scene/geometry/cube.h \
@@ -2270,6 +2461,7 @@ debug/cube.o: ../hw01_basecode/src/scene/geometry/cube.cpp ../hw01_basecode/src/
 		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLBuffer \
 		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglbuffer.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\cube.o ..\hw01_basecode\src\scene\geometry\cube.cpp
@@ -2507,6 +2699,7 @@ debug/mesh.o: ../hw01_basecode/src/scene/geometry/mesh.cpp ../hw01_basecode/src/
 		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLBuffer \
 		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglbuffer.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h \
 		../hw01_basecode/src/tinyobj/tiny_obj_loader.h
@@ -2745,6 +2938,7 @@ debug/sphere.o: ../hw01_basecode/src/scene/geometry/sphere.cpp ../hw01_basecode/
 		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLBuffer \
 		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglbuffer.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\sphere.o ..\hw01_basecode\src\scene\geometry\sphere.cpp
@@ -3662,12 +3856,13 @@ debug/intersection.o: ../hw01_basecode/src/raytracing/intersection.cpp ../hw01_b
 		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglbuffer.h \
 		../hw01_basecode/src/raytracing/ray.h \
 		../hw01_basecode/src/scene/materials/material.h \
-		../hw01_basecode/src/scene/transform.h \
-		../hw01_basecode/src/scene/intersectable.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/scene.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/QList \
 		../hw01_basecode/src/raytracing/film.h \
-		../hw01_basecode/src/scene/camera.h
+		../hw01_basecode/src/scene/camera.h \
+		../hw01_basecode/src/scene/transform.h \
+		../hw01_basecode/src/scene/intersectable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\intersection.o ..\hw01_basecode\src\raytracing\intersection.cpp
 
 debug/ray.o: ../hw01_basecode/src/raytracing/ray.cpp ../hw01_basecode/src/raytracing/ray.h \
@@ -4243,6 +4438,7 @@ debug/square.o: ../hw01_basecode/src/scene/geometry/square.cpp ../hw01_basecode/
 		D:/Qt/5.4/mingw491_32/include/QtGui/QOpenGLBuffer \
 		D:/Qt/5.4/mingw491_32/include/QtGui/qopenglbuffer.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\square.o ..\hw01_basecode\src\scene\geometry\square.cpp
@@ -4483,7 +4679,8 @@ debug/material.o: ../hw01_basecode/src/scene/materials/material.cpp ../hw01_base
 		../hw01_basecode/src/scene/scene.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/QList \
 		../hw01_basecode/src/raytracing/film.h \
-		../hw01_basecode/src/scene/camera.h
+		../hw01_basecode/src/scene/camera.h \
+		../hw01_basecode/src/raytracing/integrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\material.o ..\hw01_basecode\src\scene\materials\material.cpp
 
 debug/film.o: ../hw01_basecode/src/raytracing/film.cpp ../hw01_basecode/src/raytracing/film.h \
@@ -5011,7 +5208,42 @@ debug/cameracontrolshelp.o: ../hw01_basecode/src/cameracontrolshelp.cpp ../hw01_
 		D:/Qt/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		D:/Qt/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		D:/Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
-		ui_cameracontrolshelp.h
+		ui_cameracontrolshelp.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/QVariant \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QAction \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qaction.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qicon.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qactiongroup.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QApplication \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qapplication.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qeventloop.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qguiapplication.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qinputmethod.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QButtonGroup \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qbuttongroup.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QFrame \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QHeaderView \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qheaderview.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Qt/5.4/mingw491_32/include/QtGui/qvalidator.h \
+		D:/Qt/5.4/mingw491_32/include/QtCore/qregularexpression.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qslider.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qstyle.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qtabwidget.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/QLabel \
+		D:/Qt/5.4/mingw491_32/include/QtWidgets/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\cameracontrolshelp.o ..\hw01_basecode\src\cameracontrolshelp.cpp
 
 debug/phongmaterial.o: ../hw01_basecode/src/scene/materials/phongmaterial.cpp ../hw01_basecode/src/scene/materials/phongmaterial.h \
@@ -5248,7 +5480,8 @@ debug/phongmaterial.o: ../hw01_basecode/src/scene/materials/phongmaterial.cpp ..
 		../hw01_basecode/src/scene/scene.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/QList \
 		../hw01_basecode/src/raytracing/film.h \
-		../hw01_basecode/src/scene/camera.h
+		../hw01_basecode/src/scene/camera.h \
+		../hw01_basecode/src/raytracing/integrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\phongmaterial.o ..\hw01_basecode\src\scene\materials\phongmaterial.cpp
 
 debug/lambertmaterial.o: ../hw01_basecode/src/scene/materials/lambertmaterial.cpp ../hw01_basecode/src/scene/materials/lambertmaterial.h \
@@ -5485,7 +5718,8 @@ debug/lambertmaterial.o: ../hw01_basecode/src/scene/materials/lambertmaterial.cp
 		../hw01_basecode/src/scene/scene.h \
 		D:/Qt/5.4/mingw491_32/include/QtCore/QList \
 		../hw01_basecode/src/raytracing/film.h \
-		../hw01_basecode/src/scene/camera.h
+		../hw01_basecode/src/scene/camera.h \
+		../hw01_basecode/src/raytracing/integrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\lambertmaterial.o ..\hw01_basecode\src\scene\materials\lambertmaterial.cpp
 
 debug/jsonreader.o: ../hw01_basecode/src/scene/jsonreader.cpp ../hw01_basecode/src/scene/jsonreader.h \
@@ -5729,9 +5963,9 @@ debug/jsonreader.o: ../hw01_basecode/src/scene/jsonreader.cpp ../hw01_basecode/s
 		../hw01_basecode/src/raytracing/intersection.h \
 		../hw01_basecode/src/scene/scene.h \
 		../hw01_basecode/src/scene/materials/material.h \
+		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/transform.h \
 		../hw01_basecode/src/scene/intersectable.h \
-		../hw01_basecode/src/raytracing/integrator.h \
 		../hw01_basecode/src/scene/geometry/mesh.h \
 		../hw01_basecode/src/scene/geometry/cube.h \
 		../hw01_basecode/src/scene/geometry/sphere.h \
@@ -5739,6 +5973,9 @@ debug/jsonreader.o: ../hw01_basecode/src/scene/jsonreader.cpp ../hw01_basecode/s
 		../hw01_basecode/src/scene/materials/lambertmaterial.h \
 		../hw01_basecode/src/scene/materials/phongmaterial.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\jsonreader.o ..\hw01_basecode\src\scene\jsonreader.cpp
+
+debug/rendertask.o: ../hw01_basecode/src/rendertask.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\rendertask.o ..\hw01_basecode\src\rendertask.cpp
 
 debug/qrc_glsl.o: debug/qrc_glsl.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qrc_glsl.o debug\qrc_glsl.cpp

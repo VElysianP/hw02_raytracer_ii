@@ -78,3 +78,7 @@ void SquarePlane::create()
     bufCol.setUsagePattern(QOpenGLBuffer::StaticDraw);
     bufCol.allocate(cub_vert_col, 4 * sizeof(glm::vec3));
 }
+glm::vec2 SquarePlane::GetUVCoordinates(const glm::vec3 &point) const
+{
+    return glm::vec2(point[0]+0.5,point[1]+0.5);
+}

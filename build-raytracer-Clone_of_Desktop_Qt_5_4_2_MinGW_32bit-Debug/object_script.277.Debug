@@ -22,6 +22,7 @@ INPUT(
 ./debug\phongmaterial.o
 ./debug\lambertmaterial.o
 ./debug\jsonreader.o
+./debug\rendertask.o
 ./debug\qrc_glsl.o
 ./debug\moc_mainwindow.o
 ./debug\moc_mygl.o
