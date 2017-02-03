@@ -36,12 +36,12 @@ public:
 
     glm::mat4 PerspectiveProjectionMatrix();
     glm::mat4 ViewMatrix();
-    glm::mat4 getViewProj();
+    glm::mat4 getViewProj() const;
 
     void RecomputeAttributes();
 
     Ray Raycast(const glm::vec2 &pt);         //Creates a ray in 3D space given a 2D point on the screen, in screen coordinates.
-    Ray Raycast(float x, float y);            //Same as above, but takes two floats rather than a vec2.
+    Ray Raycast(float x, float y) const;            //Same as above, but takes two floats rather than a vec2.
     Ray RaycastNDC(float ndc_x, float ndc_y); //Creates a ray in 3D space given a 2D point in normalized device coordinates.
 
     void RotateAboutUp(float deg);

@@ -6,7 +6,7 @@ Integrator::Integrator():
 }
 
 //Basic ray trace
-glm::vec3 Integrator::TraceRay(Ray r, unsigned int depth)
+glm::vec3 Integrator::TraceRay(Ray r, unsigned int depth) const
 {
     if(depth>max_depth)
     {
@@ -79,7 +79,7 @@ void Integrator::SetDepth(unsigned int depth)
 //    }
 //}
 
-glm::vec3 Integrator::ShadowTesting(glm::vec3 intersectionPoint, glm::vec3 currentLight)
+glm::vec3 Integrator::ShadowTesting(glm::vec3 intersectionPoint, glm::vec3 currentLight) const
 {
     Ray shadowRay = Ray(intersectionPoint,currentLight);
     QList<Intersection> allIntersections = intersection_engine->GetAllIntersections(shadowRay);

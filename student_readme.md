@@ -16,6 +16,9 @@ implemented.
 *To make sure that rendertask.cpp can work, please make sure to change the path of the first line of the rendertask.cpp and also the mygl.cpp file to match the place where you store the rendertask.h file.*
 
 
+And you will see the result far more faster than the normal rendering process.
+
+
 **2. Phong Material and Reflection**
 
 In this part, the reflection and the Phong material are implemented through recursion between the EvaluateReflectedEnergy function in Lambert and Phong material class, and also the TraceRay function in Integrator. And we will have. We can see that there is no apparent differences if there is no Phong material in the scene between the new scene and HW1.

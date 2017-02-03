@@ -76,7 +76,7 @@ void Camera::RecomputeAttributes()
     H = right*len*aspect*tan_fovy;
 }
 
-glm::mat4 Camera::getViewProj()
+glm::mat4 Camera::getViewProj() const
 {
     return glm::perspective(glm::radians(fovy), width / (float)height, near_clip, far_clip) * glm::lookAt(eye, ref, up);
 }
@@ -125,7 +125,7 @@ Ray Camera::Raycast(const glm::vec2 &pt)
     return Raycast(pt.x, pt.y);
 }
 
-Ray Camera::Raycast(float x, float y)
+Ray Camera::Raycast(float x, float y) const
 {
     //TODO
     // Takes in the X and Y coordinates of a pixel

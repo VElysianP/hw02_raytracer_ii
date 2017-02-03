@@ -209,22 +209,56 @@ void MyGL::RaytraceScene()
 
 
 
-    for(unsigned int i = 0; i < scene.camera.width; i++)
+//    for(unsigned int i = 0; i < scene.camera.width; i++)
+//    {
+//        for(unsigned int j = 0; j < scene.camera.height; j++)
+//        {
+//            Ray currentRay = gl_camera.Raycast(i,j);
+
+// //            Intersection currentIntersection = intersection_engine.GetIntersection(currentRay);
+// //            glm::vec3 colorNormal = currentIntersection.normal;
+
+//            unsigned int depth =  0;
+//            glm::vec3 colorNormal = integrator.TraceRay(currentRay,depth);
+
+
+//           scene.film.pixels[i][j] = glm::vec3(std::fabs(colorNormal[0]),std::fabs(colorNormal[1]),std::fabs(colorNormal[2]));
+
+//        }
+//    }
+
+
+
+
+    int widthNumber = scene.camera.width/16;
+    int heightNumber = scene.camera.height/16;
+
+    for(int tempCount1=0;tempCount1<widthNumber;tempCount1++)
     {
-        for(unsigned int j = 0; j < scene.camera.height; j++)
+        for(int tempCount2=0;tempCount2<heightNumber;tempCount2++)
         {
-            Ray currentRay = gl_camera.Raycast(i,j);
-
-//            Intersection currentIntersection = intersection_engine.GetIntersection(currentRay);
-//            glm::vec3 colorNormal = currentIntersection.normal;
-
-            unsigned int depth =  0;
-            glm::vec3 colorNormal = integrator.TraceRay(currentRay,depth);
-
-
-            scene.film.pixels[i][j] = glm::vec3(std::fabs(colorNormal[0]),std::fabs(colorNormal[1]),std::fabs(colorNormal[2]));
+            RenderTask* run = new RenderTask(glm::ivec2(tempCount1*16,tempCount2*16),glm::ivec2((tempCount1+1)*16-1,(tempCount2+1)*16-1),&gl_camera,&scene.film,&integrator);
+            QThreadPool::globalInstance()->start(run,0);
         }
     }
-    scene.film.WriteImage(filepath);
+
+
+    int widthNumber2 = (scene.camera.width-widthNumber*16)/2;
+    int heightNumber2 = (scene.camera.height-heightNumber*16)/2;
+
+
+    for(int tempCount3 = widthNumber*16;tempCount3<scene.camera.width;tempCount3++)
+    {
+        for(int tempCount4 = heightNumber*16;tempCount4<scene.camera.height;tempCount4++)
+        {
+            RenderTask* run = new RenderTask(glm::ivec2((widthNumber2-1)*16,(heightNumber2-1)*16),glm::ivec2(widthNumber2*16-1,heightNumber2*16-1),&gl_camera,&scene.film,&integrator);
+            QThreadPool::globalInstance()->start(run,0);
+        }
+    }
+
+    if(QThreadPool::globalInstance()->waitForDone())
+    {
+            scene.film.WriteImage(filepath);
+    }
 }
 

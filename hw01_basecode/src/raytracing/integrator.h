@@ -17,9 +17,9 @@ class Integrator
 public:
     Integrator();
     Integrator(Scene *s);
-    glm::vec3 TraceRay(Ray r, unsigned int depth);
+    glm::vec3 TraceRay(Ray r, unsigned int depth) const;
     //glm::vec3 TraceRay(glm::vec3 origin,glm::vec3 direction, unsigned int depth);
-    glm::vec3 ShadowTesting(glm::vec3 intersectionPoint, glm::vec3 currentLight);
+    glm::vec3 ShadowTesting(glm::vec3 intersectionPoint, glm::vec3 currentLight) const;
     void SetDepth(unsigned int depth);
     //glm::vec3 reflection(glm::vec3 incomeRay, glm::vec3 normalDir);
 
